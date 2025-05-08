@@ -6,5 +6,5 @@ tags:   [oscillators]
 ---
 
 I recently became interested in phased arrays after watching [this](https://youtu.be/z4uxC7ISd-c?si=QM6bxZAGs_SjXdXq).   
-A phased array is basically a collection of oscillators that, due to interference, produce beams of some kind of wave, which can be steered by subtle tuning of the phase difference between the individual oscillators. If all oscillators
-This phenomenon is used for a range of tech applications like antenna's (electromagnetic waves), and ultrasound imaging (ultrasonic waves).
+From what I understand, a phased array is basically a collection of regularly spaced oscillators that, due to interference, produce (somewhat focused) beams of waves. These beams which can be steered by subtle tuning of the phase difference between the individual oscillators. If all oscillators are in phase, the beam will propagate perpendicular to the array.
+This phenomenon is used for a range of tech applications, such as antenna's (electromagnetic waves), and ultrasound imaging (ultrasonic acoustic waves). 
