@@ -1,0 +1,16 @@
+# _config.yml
+title: Things
+description: >-
+  Projects
+baseurl: ""              # no trailing slash; leave blank for username.github.io
+url: "https://samman350.github.io"
+
+theme: minima            # use Jekyll’s built-in minimal theme
+plugins:
+  - jekyll-feed          # optional: RSS feed support
+paginate: 5              # show 5 posts per page
+
+# Optional: customize your nav, author, socials, etc.
+author:
+  name: Sam S.
+
