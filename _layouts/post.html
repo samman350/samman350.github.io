@@ -1,0 +1,9 @@
+---
+layout: default
+---
+<article>
+  <h2>{{ page.title }}</h2>
+  <p><small>Posted on {{ page.date | date: "%B %-d, %Y" }}</small></p>
+  {{ content }}
+  <p><a href="{{ '/' | relative_url }}">&larr; Back to home</a></p>
+</article>
