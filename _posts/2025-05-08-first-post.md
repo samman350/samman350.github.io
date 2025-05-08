@@ -6,8 +6,9 @@ tags:   [introduction, welcome]
 ---
 
 Hello world! This is my **first** blog post on my shiny new Jekyll site.
+I want to write about projects that I did. I do this to have some overview of what I do, plus I want to show things to people.
 
 Here’s what I plan to write about:
 
-- Technical stuff
-- Real world and Simulation world stuff
+- simulations
+- microcontroller projects 
