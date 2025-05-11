@@ -32,4 +32,12 @@ and here is the power of the beam:
 
 I did not take any attentuation of the waves into account, since I was just interested in the directionality. 
 
-Of course, I wanted to take it to the next level by extending these simulations to the third dimension, in order to investigate two dimensional arrays of oscillators. Since this is a bit heavy for Python (4 nested for loops), I turned to my favorite language, Julia. I [wrote an object oriented script](https://github.com/samman350/3D_PhaseArray) that treats the simulation like a type, and utilized the GPU for the heavy lifting, using the CUDA library. All of this was done in a handy Jupyter Notebook format. Just create a simulation using sim = SimulationWorld(...), and run it by run(sim), and the total psi(x,y,z) is outputted. 
+Of course, I wanted to take it to the next level by extending these simulations to the third dimension, in order to investigate two dimensional arrays of oscillators. Since this is a bit heavy for Python (4 nested for loops), I turned to my favorite language, Julia. I [wrote an object oriented script](https://github.com/samman350/3D_PhaseArray) that treats the simulation like a type, and utilized the GPU for the heavy lifting, using the CUDA library. All of this was done in a handy Jupyter Notebook format. Just create a simulation using sim = SimulationWorld(...), and run it by run(sim), and the total psi(x,y,z) is outputted (is outputted a word?). This way, a grid of 512 x 512 x 1024 voxels (a quarter billion points), for 25 oscillators is simulated in 5 seconds on a laptop RTX 2060 graphics card.
+
+We can then take slices through the middle of psi(x,y,z) block to inspect the beam:
+
+Does steering work?
+
+Yes!
+
+We didn't do all this 3D simulating just to end up with 2D figures. We need beautiful 3D images of the beam making its way through space. One way to do this is by 3D voxel plotting, but will burn your graphics card for the size of grid that we are interested in. I thought instead that it would be good to find a suitable threshold for the amplitude, both positive and negative, and group connected regions together. Then, we wrap isosurfaces around these regions using a marching cubes algorithm (it's built-in in a Julia package), which results in meshes for both positive and negative regions. Now, we can save these meshes into .obj files, and import them in Blender. I have to admit that in this last section I relied quite heavily on 'vibe coding', but whatever works works, and the result is quite amazing:
