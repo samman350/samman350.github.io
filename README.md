@@ -1,1 +1,1 @@
-Projects
+Welcome to the blog
