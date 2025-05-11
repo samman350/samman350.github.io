@@ -14,4 +14,15 @@ This phenomenon is used for a range of tech applications, such as antenna's (ele
 
 As a first step, I thought it would be a good idea to simulate these systems on a computer, to get a feeling for the behaviour of phased arrays. I started out with a script in Python that can simulate a 1D array of oscillators, it can be found [here](https://github.com/samman350/2D_PhasedArray/).
 
-I tried a row of 4 oscillators, then managed to steer it, and extended it to 6 oscillators. It can be seen that the beam is narrowed for 6 oscillators.
+I tried a row of 4 oscillators:
+![four oscillators in a row]({{ '/assets/images/Waves.png' | relative_url }})
+
+then managed to steer it by changing the relative phases:
+![steering the waves]({{ '/assets/images/Waves4Steer.png' | relative_url }})
+
+and extended it to 6 oscillators. It can be seen that the beam is narrower: 
+![6 oscillators]({{ '/assets/images/Waves6Steer.png' | relative_url }})
+
+Here I plotted the power of the beam with 6 oscillators:
+![the power of 6 oscillators]({{ '/assets/images/Waves4Steer_power6.png' | relative_url }})
+
