@@ -14,7 +14,9 @@ This phenomenon is used for a range of tech applications, such as antenna's (ele
 
 As a first step, I thought it would be a good idea to simulate these systems on a computer, to get a feeling for the behaviour of phased arrays. I started out with a script in Python that can simulate a 1D array of oscillators, it can be found [here](https://github.com/samman350/2D_PhasedArray/). Essentially, it's just a superposition of circular waves, 
 
-$$// \psi_i=e^{ikr}$$
+$$// \psi_i(x,y)=e^{ikr}$$,
+
+for a spatial grid of 512 by 512 pixels.
 
 I tried a row of 4 oscillators:
 ![four oscillators in a row]({{ '/assets/images/Waves.png' | relative_url }})
