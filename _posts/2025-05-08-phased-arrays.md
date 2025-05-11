@@ -30,4 +30,6 @@ and extended it to 6 oscillators. It can be seen that the beam is more narrow:
 and here is the power of the beam:
 ![the power of 6 oscillators]({{ '/assets/images/Waves4Steer_power6.png' | relative_url }})
 
-The last image is somewhat misleading
+I did not take any attentuation of the waves into account, since I was just interested in the directionality. 
+
+Of course, I wanted to take it to the next level by extending these simulations to the third dimension, in order to investigate two dimensional arrays of oscillators. Since this is a bit heavy for Python (4 nested for loops), I turned to my favorite language, Julia. I [wrote an object oriented script](https://github.com/samman350/3D_PhaseArray) that treats the simulation like a type, and utilized the GPU for the heavy lifting, using the CUDA library. All of this was done in a handy Jupyter Notebook format. Just create a simulation using sim = SimulationWorld(...), and run it by run(sim), and the total psi(x,y,z) is outputted. 
