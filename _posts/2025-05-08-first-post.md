@@ -15,6 +15,6 @@ Here’s what I plan to write about:
 - microcontroller projects (often sound related)
 - half finished games that I made (often mobile stuff)
 
-  Thanks,
+Thanks,
 
   Sam
