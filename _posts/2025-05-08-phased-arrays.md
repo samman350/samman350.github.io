@@ -34,10 +34,24 @@ I did not take any attentuation of the waves into account, since I was just inte
 
 Of course, I wanted to take it to the next level by extending these simulations to the third dimension, in order to investigate two dimensional arrays of oscillators. Since this is a bit heavy for Python (4 nested for loops), I turned to my favorite language, Julia. I [wrote an object oriented script](https://github.com/samman350/3D_PhaseArray) that treats the simulation like a type, and utilized the GPU for the heavy lifting, using the CUDA library. All of this was done in a handy Jupyter Notebook format. Just create a simulation using sim = SimulationWorld(...), and run it by run(sim), and the total psi(x,y,z) is outputted (is outputted a word?). This way, a grid of 512 x 512 x 1024 voxels (a quarter billion points), for 25 oscillators is simulated in 5 seconds on a laptop RTX 2060 graphics card.
 
+Let's focus on a simulation of 25 oscillators, i.e. a 5 by 5 grid. The spacing between the oscillators is half a wavelength.
 We can then take slices through the middle of psi(x,y,z) block to inspect the beam:
 
-Does steering work?
+![25 oscillators]({{ '/assets/images/25_0p5space_128_128_128_waves.png' | relative_url }})
 
-Yes!
+We can also inspect the power pf the beam over this slice:
 
-We didn't do all this 3D simulating just to end up with 2D figures. We need beautiful 3D images of the beam making its way through space. One way to do this is by 3D voxel plotting, but will burn your graphics card for the size of grid that we are interested in. I thought instead that it would be good to find a suitable threshold for the amplitude, both positive and negative, and group connected regions together. Then, we wrap isosurfaces around these regions using a marching cubes algorithm (it's built-in in a Julia package), which results in meshes for both positive and negative regions. Now, we can save these meshes into .obj files, and import them in Blender. I have to admit that in this last section I relied quite heavily on 'vibe coding', but whatever works works, and the result is quite amazing:
+![25 oscillators]({{ '/assets/images/25_0p5space_128_128_128.png' | relative_url }})
+
+The nice thing about full 3D simulations instead of 2D ones is, besides the increased accuracy, the possibility of 3D visualisation. Let's make beautiful 3D images of the beam making its way through space. One way to do this is by 3D voxel plotting, but this will burn your graphics card for the size of grid that we are interested in. Instead, it would be good to wrap isosurfaces of equal pressure around the different regions in space. For this, we first have to find a suitable threshold for the amplitude, both positive and negative, and group connected regions together. Then, we wrap isosurfaces around these regions using a marching cubes algorithm (it's built-in in a Julia package), which results in meshes for both positive and negative regions. Now, we can save these meshes into .obj files, and import them in Blender. I have to admit that in this last section I relied quite heavily on 'vibe coding', but whatever works works, and the result is quite amazing:
+
+Here are waves emitted from the 25 oscillators, with a oscillator spacing of 0.5 wavelengths:
+
+![25 oscillators]({{ '/assets/images/gif_25spce0p5.gif' | relative_url }})
+
+It can be seen that this leads to a nice, focused cone, with only small lobes on the sides of the cone.
+What happens when we increase the distance between the oscillators to a full wavelength?
+
+![25 oscillators]({{ '/assets/images/gif_25spce1.gif' | relative_url }})
+
+It can be seen that significant sidelobes exist, that carry a significant amount of the energy. The main beam also lost it's circular shape, and instead has a more square-like outline.
