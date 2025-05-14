@@ -37,11 +37,11 @@ Of course, I wanted to take it to the next level by extending these simulations 
 Let's focus on a simulation of 25 oscillators, i.e. a 5 by 5 grid. The spacing between the oscillators is half a wavelength.
 We can then take slices through the middle of psi(x,y,z) block to inspect the beam:
 
-![25 oscillators]({{ '/assets/images/25_0p5space_128_128_128_waves.png' | relative_url }})
+![25 oscillators]({{ '/assets/images/25_0p5space_128_128_128_waves.png' | relative_url }}){: width="512" }
 
 We can also inspect the power pf the beam over this slice:
 
-![25 oscillators]({{ '/assets/images/25_0p5space_128_128_128.png' | relative_url }})
+![25 oscillators]({{ '/assets/images/25_0p5space_128_128_128.png' | relative_url }}){: width="512" }
 
 The nice thing about full 3D simulations instead of 2D ones is, besides the increased accuracy, the possibility of 3D visualisation. Let's make beautiful 3D images of the beam making its way through space. One way to do this is by 3D voxel plotting, but this will burn your graphics card for the size of grid that we are interested in. Instead, it would be good to wrap isosurfaces of equal pressure around the different regions in space. For this, we first have to find a suitable threshold for the amplitude, both positive and negative, and group connected regions together. Then, we wrap isosurfaces around these regions using a marching cubes algorithm (it's built-in in a Julia package), which results in meshes for both positive and negative regions. Now, we can save these meshes into .obj files, and import them in Blender. I have to admit that in this last section I relied quite heavily on 'vibe coding', but whatever works works, and the result is quite amazing:
 
@@ -49,9 +49,9 @@ Here are waves emitted from the 25 oscillators, with a oscillator spacing of 0.5
 
 ![25 oscillators]({{ '/assets/images/gif_25spce0p5.gif' | relative_url }})
 
-It can be seen that this leads to a nice, focused cone, with only small lobes on the sides of the cone.
+It can be seen that this leads to a nice, focused cone, with only small lobes on the sides.
 What happens when we increase the distance between the oscillators to a full wavelength?
 
 ![25 oscillators]({{ '/assets/images/gif_25spce1.gif' | relative_url }})
 
-It can be seen that significant sidelobes exist, that carry a significant amount of the energy. The main beam also lost it's circular shape, and instead has a more square-like outline.
+It can be seen that significant sidelobes exist, that carry a large portion of the total energy. The main beam also lost it's circular shape, and instead has a more square-like outline.
