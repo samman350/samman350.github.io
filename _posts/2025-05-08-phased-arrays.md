@@ -55,4 +55,4 @@ What happens when we increase the distance between the oscillators to a full wav
 ![25 oscillators]({{ '/assets/images/gif_25spce1.gif' | relative_url }})
 
 It can be seen that significant side lobes exist, that carry a large portion of the total energy. The main beam also lost it's circular shape, and instead has a more square-like outline.
-This seems like a good platform for studying the behaviour of the phased array, I hope the experiments will turn out good too. Stay tuned people. 
+This seems like a good platform for studying the behaviour of the phased array. The next step is the experimental realization of such an array, I hope this will turn out good too. Stay tuned people. 
