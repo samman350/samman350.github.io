@@ -7,7 +7,7 @@ tags:   [oscillators]
 
 When I set out to make games, my ambition was to make them artistic. However, it is difficult to determine what discerns artistic games from normal games. What are the demands for an artistic game: No shooting? No fighting? Atmospheric? Je ne sais pas (French for: I don’t know). Maybe the meaning of artistic game is different to everyone. With the following project, I don’t think I came any closer to an answer.
 
-![game]({{ '/assets/images/handdrawngame/gamegif2.gif' | relative_url }})
+![game]({{ '/assets/images/handdrawngame/gamegif2.gif' | relative_url }}){: width="512"}
 
 My idea was to hand draw sprite images, in order to animate the main character in a game. I used the following method, which is perhaps best described as ‘reverse rotoscoping’: I downloaded a 3D character that performed a walking animation, then laid a paper on my screen, and traced the model with a pencil from different angles, and at different stages of the walk cycle. It's important here to keep the center of the animation at a constant position throughout the cycle.
 
