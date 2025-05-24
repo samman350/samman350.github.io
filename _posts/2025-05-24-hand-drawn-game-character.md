@@ -9,7 +9,7 @@ When I set out to make games, my ambition was to make them artistic. However, it
 
 ![game]({{ '/assets/images/handdrawngame/gamegif2.gif' | relative_url }}){: width="650"}
 
-My idea was to hand draw sprite images, in order to animate the main character in a game. I used the following method, which is perhaps best described as ‘reverse rotoscoping’: I downloaded a 3D character that performed a walking animation, then laid a paper on my screen, and traced the model with a pencil from different angles, and at different stages of the walk cycle. It's important here to keep the center of the animation at a constant position throughout the cycle.
+As you can see, these are hand-drawn sprite images for animating the main character of a game. I used the following method, which is perhaps best described as ‘reverse rotoscoping’: I downloaded a 3D character that performed a walking animation, then laid a paper on my screen, and traced the model with a pencil from different angles, and at different stages of the walk cycle. It's important here to keep the center of the animation at a constant position throughout the cycle.
 
 ![sketches]({{ '/assets/images/handdrawngame/sketches1L.jpg' | relative_url }}){: width="650"}
 
