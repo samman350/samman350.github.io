@@ -19,7 +19,7 @@ The perspectives were from south, south-east, east etc, totalling eight differen
 
 I then used Unity to create an Android app with this animation, using the drawing as the main character. A ‘sprite renderer’ is necessary to add to the object that represents the player. I find the ‘animator’ in Unity a little bit confusing for creating animation, so I wrote my own code to swap sprites over time. In short, this comes down to defining a sprite list for every direction:
 
-{% highlight csharp linenos %}
+{% highlight csharp %}
 public List<Sprite> spriteMove = new List<Sprite>();
 {% endhighlight %}
 
