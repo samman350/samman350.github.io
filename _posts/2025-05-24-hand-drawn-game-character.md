@@ -25,7 +25,7 @@ public List<Sprite> spriteMove = new List<Sprite>();
 
 where the list can be loaded with sprites from the Unity UI, you simply drag and drop. Then, in order to cycle through the animations with a certain speed, I learned that it best to use the IEnumerator(), which is a function that runs coroutines. This function allows for breaks with a certain time extend, giving the choppy animation that I was looking for (Update() loop does not allow for breaks).
 
-{% highlight csharp linenos %}
+{% highlight csharp %}
 private void Start()
 {
     StartCoroutine(PlayAnim());
