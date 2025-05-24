@@ -20,7 +20,7 @@ The perspectives were from south, south-east, east etc, totalling eight differen
 I then used Unity to create an Android app with this animation, using the drawing as the main character. A ‘sprite renderer’ is necessary to add to the object that represents the player. I find the ‘animator’ in Unity a little bit confusing for creating animation, so I wrote my own code to swap sprites over time. In short, this comes down to defining a sprite list for every direction:
 
 {% highlight csharp linenos %}
-'''public List<Sprite> spriteMove = new List<Sprite>();'''
+public List<Sprite> spriteMove = new List<Sprite>();
 {% endhighlight %}
 
 where the list can be loaded with sprites from the Unity UI, you simply drag and drop. Then, in order to cycle through the animations with a certain speed, I learned that it best to use the IEnumerator(), which is a function that runs coroutines. This function allows for breaks with a certain time extend, giving the choppy animation that I was looking for (Update() loop does not allow for breaks).
