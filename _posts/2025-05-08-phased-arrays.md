@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Phased Arrays"
+title:  "Simulation: Phased Arrays"
 date:   2025-05-08 10:00:00 +0200
 tags:   [oscillators]
 ---
