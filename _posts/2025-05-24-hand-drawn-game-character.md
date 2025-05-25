@@ -5,7 +5,7 @@ date:   2025-05-24 10:00:00 +0200
 tags:   [oscillators]
 ---
 
-When I set out to make games, my ambition was to make them artistic. However, it is difficult to determine what discerns artistic games from normal games. What are the demands for an artistic game: No shooting? No fighting? Atmospheric? Je ne sais pas (French for: I don’t know). Maybe the meaning of artistic game is different to everyone. With the following project, I don’t think I came any closer to an answer.
+When I set out to make games, my ambition was to make them artistic. However, it is difficult to determine what discerns artistic games from normal games. What are the demands for an artistic game: No shooting? No fighting? Atmospheric? Maybe the meaning of artistic game is different to everyone. With the following project, I don’t think I came any closer to an answer.
 
 ![game]({{ '/assets/images/handdrawngame/gamegif2.gif' | relative_url }}){: width="650"}
 
