@@ -1,7 +1,7 @@
 # _config.yml
 title: In Limbo
-#description: >-
-#  In Limbo
+description: >-
+  Sam's blog
 baseurl: ""              # no trailing slash; leave blank for username.github.io
 url: "https://samman350.github.io"
 
