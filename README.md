@@ -1,1 +1,1 @@
-Technical and/or creative projects
+Technical and/or creative projects of a physicist
