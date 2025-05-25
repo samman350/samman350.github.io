@@ -1,1 +1,1 @@
-Welcome to the blog
+Technical and/or creative projects
