@@ -82,6 +82,7 @@ This cutoff distance serves to determine which neighbours belong to a particle�
 SIMULATION
 
 Having taken care of our particles, let’s define our simulation. As you have noticed, I like classes, so let’s set up a simulation class: class Simulator{};. In this class we include some properties like the spring constant and the tension in the string, and perhaps damping. The foremost members of this class are the functions that describe the solver, which integrates the equation of motion for a set timestep. Essentially, the velocity Verlet algorithm comes down to:
+	
 	void verletSolver(ParticleSystem* ps) {
 	        updatePositions(ps, timeStep);
 	        updateForcesAndAccelerations(ps, springConstant, springDamping, stringTension);
