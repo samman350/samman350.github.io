@@ -139,7 +139,7 @@ The last objective was producing proper sound. Firstly, sound consists of pressu
 
 Note the multiplication with i, it makes the contribution less symmetric: the first particle to the left contributes less than the next one. This spatially dependent scaling is a way to let also symmetric higher harmonic overtones contribute to the total amplitude, resulting in a richer tone. If this scaling is not present, symetric waves cancel themselves out: the right half exactly cancels the left half, resulting in a less rich tone.
 
-This  with an Audio Callback function, which communicates with the sound card. This function is very much ‘Embedded-Systems-kind-of-C’, and looks like this:
+In the Raylib engine, signals are turned into sound using an Audio Callback function, which communicates with the sound card. This function is very much ‘Embedded-Systems-kind-of-C’, and looks like this:
 
 	static void AudioCB(void* buffer, unsigned int frames)
 	{
@@ -149,8 +149,8 @@ This  with an Audio Callback function, which communicates with the sound card. T
     	}
 	}
 
-If you realize that in C, when you define an array, you really define a pointer to the first element of array, this function becomes alot easier to understand.
-This function is then passed as an argument to the following function:
+If you realize that in C, when you define an array, you really define a pointer to the first element of array, this function becomes alot easier to understand. Also notice the casting to short, which is a 16-bit floating point. 
+This callback function is then passed as an argument to the following function:
 
 	SetAudioStreamCallback(stream, AudioCB);
 
