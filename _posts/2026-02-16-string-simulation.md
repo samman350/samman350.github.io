@@ -6,9 +6,13 @@ tags:   [string]
 ---
 
 I was inspired by a friend who wrote about string oscillations, when the question arose in my head: is it possible to run a physics simulation of string oscillation in realtime, fast enough to produce audio? And the follow up: Can I make the simulation interactive, such that you can use it with touch screen controls on an Android phone, as such turning my phone into a simulated instrument? The answers are yes:
+
 YOUTUBE LINK
+
 Here is how I made it:
+
 WRITING THE SIMULATION BACKEND
+
 First things first: what are we simulating? A flexible string. The string is modelled as a set of coupled masses, where the coupling occurs through (invisible) springs. The physics is then pretty simple, as for the two dimensional case, the force on each mass can be described by:
 
 $$
@@ -16,12 +20,18 @@ F_i = \sum_j^n -k(r_j-r_0)\hat{r}
 $$
 
 where i is the index of the particle in question, k is the spring constant in Hooke’s law, and r is the distance to the neighbour, where r_0 is the initial offset (note the extra r ̂ in comparison the 1D case). We can then integrate Newton’s law to find the position of each particle, at each point in time:
-(d^2 r_i)/(dt^2 )=F_i/m_i  
- One of the finer ways to do this is to use a velocity-Verlet solver, which is a so called symplectic solver that conserves energy (in contrast to, for example, a simple Euler solver that tends to dissipate energy). I will not go into details on this algorithm, but it involves some separate steps to calculate velocity, Force (acceleration), and position. 
+
+$$
+\frac{d^2 r_i}{dt^2}=F_i/m_i  
+$$
+
+One of the finer ways to do this is to use a velocity-Verlet solver, which is a so called symplectic solver that conserves energy (in contrast to, for example, a simple Euler solver that tends to dissipate energy). I will not go into details on this algorithm, but it involves some separate steps to calculate velocity, Force (acceleration), and position. 
+
 And that is basically all there is to it, if you have enough of these masses, you effectively have a flexible string. How do we describe this to a computer?
+
 The language of choice is C++, since it’s fast, and it is supported by Android Studio (a great program for making Android apps). C++ has gotten a bad reputation lately for it’s unsafety and verbose (at least modern versions are verbose) language, but I like the easy control of pointers and the possibility of having classes. If you don’t know what a class is: it’s a struct which also allows functions as members, and does an automatic type definition. The latter means that you can for example define a car as a type: class Car{..}; , and then instantiate this type like so: ’Car Skoda;’ , similar to ’int a;’. This is one of the cornerstones of object oriented programming, and I love it. Anyway, before we define a system of coupled masses, we can define a little 2D math library, not just out of necessity, but also because it’s fun and useful to learn (I see every programming project as a chance to learn C++).
 
-MATH library
+MATH LIBRARY
 
 Let’s define a class called Vec2, and outfit this class with functions (methods) to define  normal operations like summation and multiplication, but for two dimensions. This is called operator overloading. I chose to do this in a separate header file, .h, and have the definition of the functions in a .cpp file. It looks then a bit like this (this example shows the definition of  summation of 2D vectors in the .h file):
 
