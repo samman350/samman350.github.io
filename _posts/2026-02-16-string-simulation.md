@@ -35,7 +35,8 @@ MATH LIBRARY
 
 Let’s define a class called Vec2, and outfit this class with functions (methods) to define  normal operations like summation and multiplication, but for two dimensions. This is called operator overloading. I chose to do this in a separate header file, .h, and have the definition of the functions in a .cpp file. It looks then a bit like this (this example shows the definition of  summation of 2D vectors in the .h file):
 
-Vec2 operator+(const Vec2& other) const;
+	Vec2 operator+(const Vec2& other) const;
+
 And here is the implementation in the .cpp file:
 
 	Vec2 Vec2::operator+(const Vec2& other) const {
