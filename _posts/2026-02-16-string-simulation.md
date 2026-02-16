@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Simulation: Interactive, audible string"
-date:   2025-05-08 10:00:00 +0200
+title:  "The smartphone as a musical instrument"
+date:   2026-02-16 10:00:00 +0200
 tags:   [string]
 ---
 
