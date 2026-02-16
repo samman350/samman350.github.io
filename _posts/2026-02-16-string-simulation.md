@@ -7,7 +7,7 @@ tags:   [string]
 
 I was inspired by a friend who wrote about string oscillations, when the question arose in my head: is it possible to run a physics simulation of string oscillation in realtime, fast enough to produce audio? And the follow up: Can I make the simulation interactive, such that you can use it with touch screen controls on an Android phone, as such turning my phone into a simulated instrument? The answers are yes:
 
-YOUTUBE LINK
+{% include youtube.html id="Ve-RVZ7UdLM" %}
 
 Here is how I made it:
 
