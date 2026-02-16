@@ -1,6 +1,6 @@
 Hi! I am Sam. Born and raised in Amsterdam, then:
 
-- studied technical physics at University of Twente, focus on material physics
+- studied technical physics at University of Twente, focus on material physics and a minor in music (jazz guitar).
 - PhD in Trondheim, Norway and partially at Berkeley Labs (20 months) in CA, USA, specializing in micro- and nanoscopic magnetism;
 - moved to Uppsala, Sweden to become a post doc at the Ångström Laboratory, and eventually became a researcher.
 
