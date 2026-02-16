@@ -40,7 +40,7 @@ Simple enough, add two Vec2’s and return a Vec2 with the sum! The & in this ca
 
 Indeed you can recognize Pythagoras in there. Doing it this way, if you have two Vec2’s that indicate a position, since DistanceTo is a member function, you can evaluate the distance in this fun way: 
 
-position_1.DistanceTo(position_2). 
+	position_1.DistanceTo(position_2). 
 
 I did it the same for direction and dot product, direction_1.Dot(direction_2). The more normal case would be to define it such that you can write Dot(direction_1, direction_2), but in my way it has the order of normal maths, which I like.
 
@@ -50,32 +50,32 @@ PARTICLE SYSTEM AND SIMULATION
 
 Let’s start by defining a class, Particle, which has physics properties like position, velocity and acceleration, and mass. Additionally, it has Boolean properties like ‘fixed’ and ‘simulable’, the latter will come in handy when we will interact with the system, and the former is useful to fix a string at its ends. The wildest property it has, is a list of neighbours, which is a vector containing Particle’s. Indeed, the Particle class has a member of it’s own type! It is written as:
 
-std::vector<Particle*> neighbours = std::vector<Particle*>();
+	std::vector<Particle*> neighbours = std::vector<Particle*>();
 
 The way of setting the array with std::vector is safer than using neighbours[]. The attentive reader will note that it is not really an array of particle data, but rather pointers to particles (note the * ). Indeed, this is useful because otherwise we store copies of the initially defined particles only, and the info of the particles will not be updated during the simulation. With pointers you make sure to just look up whatever is at that memory address. 
 
 After having defined our particle, we define a system of particles in a class: 
 
-class ParticleSystem;
+	class ParticleSystem;
 
 This has one member only, which is an array of Particle’s. The constructor function of this class then creates the total simulatable string from two input variables; the amount of particles, and a cutoff distance:
 
-ParticleSystem(const int N_Particles, const float r_cutoff){…}
+	ParticleSystem(const int N_Particles, const float r_cutoff){…}
 
 This cutoff distance serves to determine which neighbours belong to a particle’s neighbour list, i.e. if the initial distance is smaller than the cutoff distance, it will be included in the neighbour list. This list is constant throughout the simulation, i.e. the amount of neighbours will not change. We will see later that the neighbour list allows for a flexible approach to the string: it makes also easily possible topologies other than of the trivial string. It is also worth noting that the neighbourlist essentially creates a linked list. For example, if you want to find the x-component of the position of the third neighbour to the left of particle i, you can find it like so:
 
-particleSystem.particles[i].neighbours[1].neighbours[1].neighbours[1]->position.x; 
+	particleSystem.particles[i].neighbours[1].neighbours[1].neighbours[1]->position.x; 
 
 (If you wanted to go to the right, just replace 1 with 2 in the indexes). Yes -> we are dereferencing a pointer to get the position (remember the neighbour list is a list of pointers!). This may just seem like a fun little fact, but it adds a flexible way of including higher order interactions such as angle bending (whose emergent property is string stiffness).
 
 SIMULATION
 
 Having taken care of our particles, let’s define our simulation. As you have noticed, I like classes, so let’s set up a simulation class: class Simulator{};. In this class we include some properties like the spring constant and the tension in the string, and perhaps damping. The foremost members of this class are the functions that describe the solver, which integrates the equation of motion for a set timestep. Essentially, the velocity Verlet algorithm comes down to:
-void verletSolver(ParticleSystem* ps) {
-        updatePositions(ps, timeStep);
-        updateForcesAndAccelerations(ps, springConstant, springDamping, stringTension);
-        updateVelocities(ps, timeStep);
-}
+	void verletSolver(ParticleSystem* ps) {
+	        updatePositions(ps, timeStep);
+	        updateForcesAndAccelerations(ps, springConstant, springDamping, stringTension);
+	        updateVelocities(ps, timeStep);
+	}
 
 This updates the positions for one timestep delta t. This means that position is a mutable variable, and will be updated many times. Some people are opposed to using mutable variables, not in the least John Carmack, but honestly I would not know how to do this in another way for a simulation that is in principle infinitely long. I could initiate a very large array and write to that, but at some point it will be full and the party is over.
 The gist of this solver is in our updateForcesAndAcceleration; function. Wtf? Indeed, it just calculates the force looping over all the particles, and the neighbours, so that means two nested for loops, a big one and a small one. In order to calculate the force, you also need to know r0, the offset, see eq 1. This offset just refers to the equilibrium position of the particles. 
@@ -84,28 +84,27 @@ Up to now I talked about tension in the elastic string, without mentioning how i
 
 The simulator is now taken care of, and we can test it by outputting positions, in the main file. We start by instantiating the particle system and the simulation on the heap, and then run the simulation for 100 steps:
 
-int main() {
-ParticleSystem* deeltjesSys = new ParticleSystem(22,1.1f);
-Simulator* Simu = new Simulator(300.0f, 0.001f, 3.2f, 0.005f); 
-
-	for (int i = 0; i < 100; i++) {
-		Simu->verletSolver(deeltjesSys);
-		std::cout << "y position of 7th particle " << deeltjesSys->positiony[7] << '\n';
-	}	
-}
+	int main() {
+		ParticleSystem* deeltjesSys = new ParticleSystem(22,1.1f);
+		Simulator* Simu = new Simulator(300.0f, 0.001f, 3.2f, 0.005f); 
+		for (int i = 0; i < 100; i++) {
+			Simu->verletSolver(deeltjesSys);
+			std::cout << "y position of 7th particle " << deeltjesSys->positiony[7] << '\n';
+		}	
+	}
 
 The code works. But is it fast enough? For a string consisting of 16 masses, where the outer ends are fixed, the simulation takes 5 microseconds per timestep. On my 10th gen intel i7 laptop. The amount of simulation steps per second thus equals 200 000, which should produce fair enough results on a smartphone, as we just need more than 48 000 steps per second, as the sampling frequency of our sound will be 48000 kHz. We are now done writing our simulation backend, and I continue with the Android app.
 
 MAKING AN APP
 
 Making an app in Android Studio is a good experience, but the default language is Kotlin, a Java derivative, and we want to use C++. This means overcoming some minor hurdles that I don’t want to bore the reader with. More importantly, how will we produce graphics on the screen, and have touch interaction and audio output? Luckily the Raylib library helps us out here: Raylib is a bare bones game engine written in C and which can be natively used with C/C++. The second lucky aspect is that someone wrote a mobile version, Raymob, which can be imported to Android Studio. The inclusion of .h and .cpp files can be dealt with in a CMakeLists.txt file:
-list(APPEND SOURCES
-        "${CMAKE_SOURCE_DIR}/main.cpp"
-         "${CMAKE_SOURCE_DIR}/math2D.h"
-        "${CMAKE_SOURCE_DIR}/math2D.cpp"
-        "${CMAKE_SOURCE_DIR}/Particle.h"
-etc
-)
+	list(APPEND SOURCES
+	        "${CMAKE_SOURCE_DIR}/main.cpp"
+	        "${CMAKE_SOURCE_DIR}/math2D.h"
+	        "${CMAKE_SOURCE_DIR}/math2D.cpp"
+ 	        "${CMAKE_SOURCE_DIR}/Particle.h"
+			etc
+	)
 
 Drawing to the screen is easy enough with the Raylib library, this can be done with functions such as ‘DrawCircle(x,y,radius,color)’. Touch interaction is also not too challenging, as there are ready made functions to get the touch position, outputting a Vec2 containing the coordinates of where the user places their finger on the screen. Of course, one should implement an appropriate conversion between screen coordinates and simulation coordinates, but this is straight forward. We can then use a function that checks if a finger is within a certain critical radius of a particle. If this is the case, we disable the simulation for that particle, and instead let the finger determine the position. 
 
@@ -117,11 +116,11 @@ SOUND
 
 The last objective was producing proper sound. Firstly, sound consists of pressure waves: the amplitude of the pressure wave produced by the string is taken to be equal to the sum of the velocities of the particles. When the velocity is highest, the pressure is highest, and vice versa:
 
-inline float stringAmplitude(ParticleSystem* ps) {
-    float sum = 0.0f;
-    for (int i = 1; i < ps->Particles.size() - 1; i++) {
-        sum += i*(ps->Particles[i].velocity.y + ps->Particles[i].velocity.x); 
-    }
+	inline float stringAmplitude(ParticleSystem* ps) {
+	    float sum = 0.0f;
+	    for (int i = 1; i < ps->Particles.size() - 1; i++) {
+  	      sum += i*(ps->Particles[i].velocity.y + ps->Particles[i].velocity.x); 
+  	}
     return sum;
 }
 
@@ -129,18 +128,18 @@ Note the multiplication with i, it makes the contribution less symmetric: the fi
 
 This  with an Audio Callback function, which communicates with the sound card. This function is very much ‘Embedded-Systems-kind-of-C’, and looks like this:
 
-static void AudioCB(void* buffer, unsigned int frames)
-{
-    short *d = (short *)buffer; // pointer to first element of buffer
-    for (unsigned int i = 0; i < frames; ++i) {
-        d[i] = (short)data;
-    }
-}
+	static void AudioCB(void* buffer, unsigned int frames)
+	{
+    	short *d = (short *)buffer; // pointer to first element of buffer
+    	for (unsigned int i = 0; i < frames; ++i) {
+        	d[i] = (short)data;
+    	}
+	}
 
 If you realize that in C, when you define an array, you really define a pointer to the first element of array, this function becomes alot easier to understand.
 This function is then passed as an argument to the following function:
 
-SetAudioStreamCallback(stream, AudioCB);
+	SetAudioStreamCallback(stream, AudioCB);
 
 At first this confused me, how does C allow for passing functions as arguments? Functions are not first class citizens here? But then I realized that you really pass a function pointer, i.e. a pointer to a function! This is allowed in C/C++, and conversion from function to function pointer apparently happens automatically in the compiler.
 
@@ -152,14 +151,14 @@ This particular example shows a buffer that updates too slow, such that the audi
 
 I realized that perhaps I needed to use a ring buffer, a type of buffer with periodic boundary conditions, i.e. like a snake biting its own tail. In this type of buffer, there is a ‘write head’, and a ‘read head’. When the write head reaches the size of the buffer, it will continue overwriting the oldest data. The read head just runs after it, it should be slow enough so as not to overtake the write head, but fast enough that it wil not be overtaken by the write head. I borrowed a ring buffer class from Embedded Artistry, which contains all the details on how to read and write to such a buffer, as well as methods to measure the distance between the write and the read head. You can then instantiate the ringbuffer in the following way:
 
-CircularBuffer<float> ringbuff = CircularBuffer<float>(BUFFER_SIZE);
+	CircularBuffer<float> ringbuff = CircularBuffer<float>(BUFFER_SIZE);
 
 After this, you can write data with a ‘put’ command:
 
-ringbuff.put(Amplitude);
+	ringbuff.put(Amplitude);
 
 and read data with a get() command:
 
-ringbuff.get()
+	ringbuff.get()
 
 Very easy!
