@@ -176,4 +176,5 @@ and read data with a get() command:
 
 	ringbuff.get()
 
-Very easy!
+Very convenient!
+That was it for the majority of the program, I will stop here since I covered the most important aspects, and the blog post is very long. I hope you learned something. See you later!
