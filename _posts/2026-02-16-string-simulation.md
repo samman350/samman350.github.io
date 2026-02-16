@@ -28,15 +28,15 @@ Let’s define a class called Vec2, and outfit this class with functions (method
 Vec2 operator+(const Vec2& other) const;
 And here is the implementation in the .cpp file:
 
-Vec2 Vec2::operator+(const Vec2& other) const {
-    return Vec2(x + other.x, y + other.y);
-}
+	Vec2 Vec2::operator+(const Vec2& other) const {
+	    return Vec2(x + other.x, y + other.y);
+	}
 
 Simple enough, add two Vec2’s and return a Vec2 with the sum! The & in this case means that you pass the variable directly by reference, i.e. there is no copying of variables. The const prefix is just a hint to the compiler, and makes things as fast as possible. I also needed some custom functions for stuff like absolute distance (the r in equation 1), the direction, and the dot-product. For example, the distance function is defined as:
 
-float Vec2::DistanceTo(const Vec2& u) const{
-    return std::sqrt((x - u.x) * (x - u.x) + (y - u.y) * (y - u.y));
-}
+	float Vec2::DistanceTo(const Vec2& u) const{
+    	return std::sqrt((x - u.x) * (x - u.x) + (y - u.y) * (y - u.y));
+	}
 
 Indeed you can recognize Pythagoras in there. Doing it this way, if you have two Vec2’s that indicate a position, since DistanceTo is a member function, you can evaluate the distance in this fun way: 
 
