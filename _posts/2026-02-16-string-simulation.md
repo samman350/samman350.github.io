@@ -105,7 +105,7 @@ The simulator is now taken care of, and we can test it by outputting positions, 
 		}	
 	}
 
-The code works. But is it fast enough? For a string consisting of 16 masses, where the outer ends are fixed, the simulation takes 5 microseconds per timestep. On my 10th gen intel i7 laptop. The amount of simulation steps per second thus equals 200 000, which should produce fair enough results on a smartphone, as we just need more than 48 000 steps per second, as the sampling frequency of our sound will be 48000 kHz. We are now done writing our simulation backend, and I continue with the Android app.
+The code works. But is it fast enough? For a string consisting of 16 masses, where the outer ends are fixed, the simulation takes 5 microseconds per timestep. On my 10th gen intel i7 laptop. The amount of simulation steps per second thus equals 200 000, which should produce fair enough results on a smartphone, as we just need more than 48 000 steps per second, as the sampling frequency of our sound will be 48 kHz. We are now done writing our simulation backend, and I continue with the Android app.
 
 MAKING AN APP
 
