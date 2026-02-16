@@ -12,7 +12,7 @@ WRITING THE SIMULATION BACKEND
 First things first: what are we simulating? A flexible string. The string is modelled as a set of coupled masses, where the coupling occurs through (invisible) springs. The physics is then pretty simple, as for the two dimensional case, the force on each mass can be described by:
 
 $$
-F_i = \sum_j^ns -k(r_j-r_0)r^ 
+F_i = \sum_j^n -k(r_j-r_0)\hat{r} 
 $$
 
 where i is the index of the particle in question, k is the spring constant in Hooke’s law, and r is the distance to the neighbour, where r_0 is the initial offset (note the extra r ̂ in comparison the 1D case). We can then integrate Newton’s law to find the position of each particle, at each point in time:
