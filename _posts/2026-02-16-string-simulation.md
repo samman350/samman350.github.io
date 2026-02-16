@@ -109,6 +109,7 @@ The code works. But is it fast enough? For a string consisting of 16 masses, whe
 MAKING AN APP
 
 Making an app in Android Studio is a good experience, but the default language is Kotlin, a Java derivative, and we want to use C++. This means overcoming some minor hurdles that I don’t want to bore the reader with. More importantly, how will we produce graphics on the screen, and have touch interaction and audio output? Luckily the Raylib library helps us out here: Raylib is a bare bones game engine written in C and which can be natively used with C/C++. The second lucky aspect is that someone wrote a mobile version, Raymob, which can be imported to Android Studio. The inclusion of .h and .cpp files can be dealt with in a CMakeLists.txt file:
+	
 	list(APPEND SOURCES
 	        "${CMAKE_SOURCE_DIR}/main.cpp"
 	        "${CMAKE_SOURCE_DIR}/math2D.h"
