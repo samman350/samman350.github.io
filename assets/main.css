@@ -48,8 +48,10 @@ p, li {
   height: 100%;
 }
 
-/* Optional: slightly tighter spacing on very small screens */
 @media (max-width: 480px) {
   body { padding: 0.85rem; }
   header h1 { font-size: 1.4rem; }
 }
+
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.katex-display { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
